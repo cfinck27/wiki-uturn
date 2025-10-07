@@ -10,6 +10,8 @@
 
 ini_set('max_execution_time', '20000');
 
+use MediaWiki\MediaWikiServices;
+
 class SpecialUTurn extends SpecialPage {
 
     /*
@@ -429,7 +431,7 @@ class SpecialUTurn extends SpecialPage {
                         }
 
                         $summary = 'UTurn to ' . $revertTimestamp;
-                        $currentPage = WikiPage::newFromID( $page['pageid'] );
+                        $currentPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $page['pageid'] );
                         if ( $deletePages && array_key_exists( 'delete', $theRevision ) ) {
                             $errors = array();
                             // doDeleteArticleReal was not defined until 1.19, this will need to be revised when 1.18 is less prevalent
